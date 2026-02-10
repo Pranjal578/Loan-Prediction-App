@@ -18,7 +18,8 @@ This guide will walk you through deploying your loan prediction web app to Rende
 
 2. **Verify files**
    - Ensure you have all these files:
-     ```
+
+     ```text
      loan_app/
      ├── app.py
      ├── templates/
@@ -34,6 +35,7 @@ This guide will walk you through deploying your loan prediction web app to Rende
 ### Step 2: Push to GitHub
 
 1. **Initialize Git repository** (in the loan_app folder):
+
    ```bash
    git init
    git add .
@@ -41,14 +43,16 @@ This guide will walk you through deploying your loan prediction web app to Rende
    ```
 
 2. **Create a new repository on GitHub**:
-   - Go to https://github.com/new
+
+   - Go to <https://github.com/new>
    - Name it: `loan-prediction-app` (or any name you like)
    - Don't initialize with README (we already have files)
    - Click "Create repository"
 
 3. **Push your code**:
+
    ```bash
-   git remote add origin https://github.com/YOUR-USERNAME/loan-prediction-app.git
+   git remote add origin <https://github.com/YOUR-USERNAME/loan-prediction-app.git>
    git branch -M main
    git push -u origin main
    ```
@@ -56,7 +60,7 @@ This guide will walk you through deploying your loan prediction web app to Rende
 ### Step 3: Deploy on Render
 
 1. **Sign up/Login to Render**:
-   - Go to https://render.com
+   - Go to <https://render.com>
    - Sign up for free account (or login)
    - You can sign up with your GitHub account
 
@@ -68,7 +72,7 @@ This guide will walk you through deploying your loan prediction web app to Rende
 
 3. **Configure the Web Service**:
    Fill in these settings:
-   
+
    - **Name**: `loan-prediction-app` (or any unique name)
    - **Region**: Choose closest to you
    - **Branch**: `main`
@@ -110,6 +114,7 @@ This guide will walk you through deploying your loan prediction web app to Rende
 
 - Make sure `loan_model.pkl` is included in your Git repository
 - If it's too large (>100MB), you might need to use Git LFS:
+
   ```bash
   git lfs install
   git lfs track "*.pkl"
@@ -120,20 +125,24 @@ This guide will walk you through deploying your loan prediction web app to Rende
 ### Troubleshooting
 
 **Build fails:**
+
 - Check the build logs on Render
 - Ensure `requirements.txt` has all dependencies
 - Verify Python version in `runtime.txt`
 
 **App crashes on startup:**
+
 - Check if `loan_model.pkl` is in the repository
 - Verify the Start Command is `gunicorn app:app`
 - Check application logs on Render dashboard
 
-**404 Error:**
+**404 Error**:
+
 - Ensure templates folder exists with `index.html`
 - Check file paths are correct
 
 **Slow first load:**
+
 - This is normal on free tier after 15 min of inactivity
 - App "wakes up" on first request
 
@@ -177,7 +186,8 @@ Render will automatically detect the push and redeploy!
 ## Support
 
 If you encounter issues:
-1. Check Render documentation: https://render.com/docs
+
+1. Check Render documentation: <https://render.com/docs>
 2. Check application logs on Render
 3. GitHub Issues for Flask/Render specific problems
 
@@ -186,6 +196,7 @@ If you encounter issues:
 ## Quick Checklist
 
 Before deploying, make sure:
+
 - [ ] `loan_model.pkl` is in the project folder
 - [ ] All files are committed to Git
 - [ ] Repository is pushed to GitHub

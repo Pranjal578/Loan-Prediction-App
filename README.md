@@ -38,7 +38,7 @@ Navigate to: `http://127.0.0.1:5000/`
 
 ## Project Structure
 
-```
+```text
 loan_app/
 ├── app.py                  # Flask backend
 ├── templates/
@@ -96,16 +96,21 @@ loan_app/
 ## Troubleshooting
 
 ### Model not found error
+
 Make sure `loan_model.pkl` is in the same directory as `app.py`
 
 ### Port already in use
+
 Change the port in `app.py`:
+
 ```python
 app.run(debug=True, port=5001)
 ```
 
 ### Import errors
+
 Reinstall dependencies:
+
 ```bash
 pip install -r requirements.txt --upgrade
 ```
