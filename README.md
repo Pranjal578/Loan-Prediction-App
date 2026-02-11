@@ -9,11 +9,11 @@ A machine learning-powered web application that predicts loan approval based on 
 - 💼 Clean and modern user interface
 - 📱 Responsive design for all devices
 
-## Live Link
+## Project Link
 
-```link
-<https://loan-prediction-dep-y9qw.onrender.com>
-```
+Live APP :<https://loan-prediction-dep-y9qw.onrender.com>
+
+Github Repo:<https://github.com/Pranjal578/Loan-Prediction-App.git>
 
 ## Setup Instructions
 
