@@ -9,6 +9,12 @@ A machine learning-powered web application that predicts loan approval based on 
 - 💼 Clean and modern user interface
 - 📱 Responsive design for all devices
 
+## Live Link
+
+'''link
+<https://loan-prediction-dep-y9qw.onrender.com>
+'''
+
 ## Setup Instructions
 
 ### 1. Install Dependencies
