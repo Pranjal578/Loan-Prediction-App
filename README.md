@@ -11,9 +11,9 @@ A machine learning-powered web application that predicts loan approval based on 
 
 ## Live Link
 
-'''link
+```link
 <https://loan-prediction-dep-y9qw.onrender.com>
-'''
+```
 
 ## Setup Instructions
 
