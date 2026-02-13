@@ -1,70 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AI Loan Prediction System</title>
+    <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            position: relative;
+            font-family: 'Hind', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #2d3748;
+            line-height: 1.6;
+            background-color: #f8f9fa;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            position: relative;
-            animation: fadeInUp 0.6s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* ===== HEADER ===== */
         .header {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        .navbar {
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 15px 0;
+        }
+
+        .navbar-nav > li > a {
+            font-weight: 500;
+            font-size: 14px;
+            color: #2d3748 !important;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav > li > a:hover {
+            color: #667eea !important;
+        }
+
+        .logo-wrap {
+            display: inline-block;
+        }
+
+        .logo-img {
+            max-height: 45px;
+        }
+
+        /* ===== HERO Section ===== */
+        .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 50px 40px;
+            padding: 80px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -80,20 +88,21 @@
             50% { transform: scale(1.1); opacity: 0.8; }
         }
 
-        .header-content {
+        .hero-content {
             position: relative;
             z-index: 1;
         }
 
-        .header h1 {
-            font-size: 2.8em;
-            margin-bottom: 12px;
+        .hero h1 {
+            font-size: 3em;
             font-weight: 700;
+            margin-bottom: 20px;
             letter-spacing: -1px;
         }
 
-        .header p {
-            font-size: 1.15em;
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
             opacity: 0.95;
             font-weight: 400;
         }
@@ -101,70 +110,82 @@
         .badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.2);
-            padding: 6px 14px;
+            padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.85em;
+            font-size: 0.9em;
             margin-top: 15px;
             backdrop-filter: blur(10px);
         }
 
-        .form-container {
+        /* ===== FORM SECTION ===== */
+        .form-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .loan-form-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
             padding: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
         .section-title {
-            font-size: 1.3em;
+            font-size: 1.35em;
             font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 25px;
+            color: #2d3748;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .section-title::before {
             content: '';
-            width: 4px;
-            height: 24px;
+            width: 5px;
+            height: 28px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .model-selector {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            background: #f5f7fa;
             padding: 25px;
-            border-radius: 16px;
+            border-radius: 8px;
             margin-bottom: 40px;
         }
 
         .model-selector label {
             font-size: 0.95em;
             font-weight: 600;
-            color: #444;
+            color: #2d3748;
             margin-bottom: 12px;
             display: block;
         }
 
         .model-selector select {
             width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #d1d9e6;
-            border-radius: 12px;
-            font-size: 1em;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.95em;
             font-weight: 500;
             background: white;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: 'Hind', sans-serif;
         }
 
         .model-selector select:focus {
             outline: none;
             border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
         .form-group {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
         .form-row {
@@ -188,12 +209,13 @@
         input[type="number"],
         select {
             width: 100%;
-            padding: 14px 18px;
+            padding: 12px 15px;
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 1em;
+            border-radius: 6px;
+            font-size: 0.95em;
             transition: all 0.3s;
-            background: #f8fafc;
+            background: white;
+            font-family: 'Hind', sans-serif;
         }
 
         input[type="number"]:focus,
@@ -201,7 +223,7 @@
             outline: none;
             border-color: #667eea;
             background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.08);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
             transform: translateY(-1px);
         }
 
@@ -212,7 +234,7 @@
 
         .currency-prefix {
             position: absolute;
-            left: 18px;
+            left: 15px;
             top: 50%;
             transform: translateY(-50%);
             color: #718096;
@@ -221,24 +243,25 @@
         }
 
         .currency-prefix + input {
-            padding-left: 38px;
+            padding-left: 35px;
         }
 
         .submit-btn {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 14px;
-            font-size: 1.15em;
+            border-radius: 6px;
+            font-size: 1.05em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 20px;
+            margin-top: 30px;
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
             position: relative;
             overflow: hidden;
+            font-family: 'Hind', sans-serif;
         }
 
         .submit-btn::before {
@@ -271,6 +294,7 @@
             transform: none;
         }
 
+        /* ===== LOADING ===== */
         .loading {
             display: none;
             text-align: center;
@@ -304,10 +328,11 @@
             font-weight: 500;
         }
 
+        /* ===== RESULT CONTAINER ===== */
         .result-container {
             margin-top: 40px;
             padding: 40px;
-            border-radius: 20px;
+            border-radius: 8px;
             display: none;
             animation: slideInScale 0.5s ease;
             position: relative;
@@ -353,7 +378,7 @@
         }
 
         .result-container .subtitle {
-            font-size: 1.15em;
+            font-size: 1.05em;
             opacity: 0.95;
             margin-bottom: 25px;
             line-height: 1.6;
@@ -407,7 +432,7 @@
         .stat-card {
             background: rgba(255, 255, 255, 0.15);
             padding: 18px;
-            border-radius: 12px;
+            border-radius: 8px;
             backdrop-filter: blur(10px);
         }
 
@@ -423,26 +448,44 @@
         }
 
         .error-message {
-            background: #fee;
-            color: #c33;
+            background: #fef2f2;
+            color: #991b1b;
             padding: 15px 20px;
-            border-radius: 12px;
+            border-radius: 6px;
             margin-top: 20px;
-            border-left: 4px solid #c33;
+            border-left: 4px solid #991b1b;
             display: none;
         }
 
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .form-row {
                 grid-template-columns: 1fr;
             }
 
-            .header h1 {
+            .hero h1 {
                 font-size: 2em;
             }
 
-            .form-container {
-                padding: 30px 25px;
+            .loan-form-wrapper {
+                padding: 30px 20px;
             }
 
             .stats-grid {
@@ -450,76 +493,10 @@
             }
 
             .result-container {
-                padding: 30px 25px;
+                padding: 30px 20px;
             }
         }
 
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-            margin-left: 5px;
-            color: #667eea;
-        }
-
-        .info-icon {
-            width: 16px;
-            height: 16px;
-            border: 2px solid currentColor;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        /* ===== Modal & Blur Effect ===== */
-
-        .blur-active {
-            filter: blur(6px);
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-        }
-
-        .modal {
-            max-width: 600px;
-            width: 90%;
-            border-radius: 24px;
-            padding: 40px;
-            animation: popIn 0.4s ease;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .close-btn {
-            margin-top: 25px;
-            background: white;
-            color: #333;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* Loan detail message */
         .loan-hint {
             color: #ef4444;
             font-size: 0.9em;
@@ -529,142 +506,203 @@
 
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="header-content">
-                <h1>🏦 AI Loan Predictor</h1>
+<body id="body">
+    <!-- ===== HEADER ===== -->
+    <header class="header navbar-fixed-top">
+        <nav class="navbar" role="navigation">
+            <div class="container">
+                <div class="menu-container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logo">
+                        <a class="logo-wrap" href="#body">
+                            <span style="font-size: 24px; font-weight: 700; color: #667eea;">🏦 AI Loan Predictor</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse nav-collapse">
+                    <div class="menu-container">
+                        <ul class="nav navbar-nav navbar-nav-right">
+                            <li><a href="#loanForm">Predictor</a></li>
+                            <li><a href="#footer">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <div class="hero" style="margin-top: 60px;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🏦 AI Loan Prediction System</h1>
                 <p>Instant loan approval predictions powered by machine learning</p>
                 <div class="badge">✨ 99% Accuracy • Real-time Analysis</div>
             </div>
         </div>
+    </div>
 
-        <div class="form-container">
-            <div class="model-selector">
-                <label for="model">Select AI Model:</label>
-                <select id="model" name="model">
-                    <option value="best">🏆 Best Model (Recommended)</option>
-                    <option value="rf">🌲 Random Forest</option>
-                    <option value="xgb">⚡ XGBoost</option>
-                    <option value="lr">📊 Logistic Regression</option>
-                </select>
-            </div>
-
-            <form id="loanForm">
-                <div class="section-title">Personal Information</div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="no_of_dependents">Number of Dependents</label>
-                        <input type="number" id="no_of_dependents" name="no_of_dependents" required min="0" max="10" value="2">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="education">Education Level</label>
-                        <select id="education" name="education" required>
-                            <option value="1">🎓 Graduate</option>
-                            <option value="0">📚 Not Graduate</option>
-                        </select>
-                    </div>
+    <!-- ===== FORM SECTION ===== -->
+    <div class="form-section">
+        <div class="container">
+            <div class="loan-form-wrapper">
+                <div class="model-selector">
+                    <label for="model">Select AI Model:</label>
+                    <select id="model" name="model">
+                        <option value="best">🏆 Best Model (Recommended)</option>
+                        <option value="rf">🌲 Random Forest</option>
+                        <option value="xgb">⚡ XGBoost</option>
+                        <option value="lr">📊 Logistic Regression</option>
+                    </select>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="self_employed">Employment Status</label>
-                        <select id="self_employed" name="self_employed" required>
-                            <option value="0">💼 Employed</option>
-                            <option value="1">🏢 Self Employed</option>
-                            <option value="2">👔 Unemployed</option>
-                        </select>
+                <form id="loanForm">
+                    <div class="section-title">Personal Information</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="no_of_dependents">Number of Dependents</label>
+                            <input type="number" id="no_of_dependents" name="no_of_dependents" required min="0" max="10" value="2">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="education">Education Level</label>
+                            <select id="education" name="education" required>
+                                <option value="1">🎓 Graduate</option>
+                                <option value="0">📚 Not Graduate</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="cibil_score">CIBIL Score</label>
-                        <input type="number" id="cibil_score" name="cibil_score" required min="300" max="900" value="700">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="self_employed">Employment Status</label>
+                            <select id="self_employed" name="self_employed" required>
+                                <option value="0">💼 Employed</option>
+                                <option value="1">🏢 Self Employed</option>
+                                <option value="2">👔 Unemployed</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cibil_score">CIBIL Score</label>
+                            <input type="number" id="cibil_score" name="cibil_score" required min="300" max="900" value="700">
+                        </div>
                     </div>
-                </div>
 
-                <div class="section-title" style="margin-top: 40px;">Loan Details</div>
+                    <div class="section-title" style="margin-top: 40px;">Loan Details</div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="income_annum">Annual Income</label>
-                        <div class="input-wrapper">
-                            <span class="currency-prefix">₹</span>
-                            <input type="number" id="income_annum" name="income_annum" required min="0" step="10000" placeholder="Enter your annual income" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="income_annum">Annual Income</label>
+                            <div class="input-wrapper">
+                                <span class="currency-prefix">₹</span>
+                                <input type="number" id="income_annum" name="income_annum" required min="0" step="10000" placeholder="Enter your annual income">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loan_amount">Loan Amount</label>
+                            <div class="input-wrapper">
+                                <span class="currency-prefix">₹</span>
+                                <input type="number" id="loan_amount" name="loan_amount" required min="0" step="10000" placeholder="Enter desired loan amount">
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="loan_amount">Loan Amount</label>
-                        <div class="input-wrapper">
-                            <span class="currency-prefix">₹</span>
-                            <input type="number" id="loan_amount" name="loan_amount" required min="0" step="10000" placeholder="Enter desired loan amount" required>
+                        <label for="loan_term">Loan Term (months)</label>
+                        <input type="number" id="loan_term" name="loan_term" required min="1" max="360" value="12">
+                    </div>
+
+                    <div class="section-title" style="margin-top: 40px;">Asset Information</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="residential_assets_value">Residential Assets</label>
+                            <div class="input-wrapper">
+                                <span class="currency-prefix">₹</span>
+                                <input type="number" id="residential_assets_value" name="residential_assets_value" required min="0" step="50000" value="5000000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="commercial_assets_value">Commercial Assets</label>
+                            <div class="input-wrapper">
+                                <span class="currency-prefix">₹</span>
+                                <input type="number" id="commercial_assets_value" name="commercial_assets_value" required min="0" step="100000" value="3000000">
+                            </div>
                         </div>
                     </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="luxury_assets_value">Luxury Assets</label>
+                            <div class="input-wrapper">
+                                <span class="currency-prefix">₹</span>
+                                <input type="number" id="luxury_assets_value" name="luxury_assets_value" required min="0" step="100000" value="10000000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bank_asset_value">Bank Assets</label>
+                            <div class="input-wrapper">
+                                <span class="currency-prefix">₹</span>
+                                <input type="number" id="bank_asset_value" name="bank_asset_value" required min="0" step="100000" value="5000000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        🚀 Predict Loan Approval
+                    </button>
+                </form>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing your application with AI...</p>
                 </div>
 
-                <div class="form-group">
-                    <label for="loan_term">Loan Term (months)</label>
-                    <input type="number" id="loan_term" name="loan_term" required min="1" max="360" value="12">
+                <div class="error-message" id="errorMessage"></div>
+
+                <div class="result-container" id="result">
+                    <!-- Result will be displayed here -->
                 </div>
-
-                <div class="section-title" style="margin-top: 40px;">Asset Information</div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="residential_assets_value">Residential Assets</label>
-                        <div class="input-wrapper">
-                            <span class="currency-prefix">₹</span>
-                            <input type="number" id="residential_assets_value" name="residential_assets_value" required min="0" step="50000" value="5000000">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="commercial_assets_value">Commercial Assets</label>
-                        <div class="input-wrapper">
-                            <span class="currency-prefix">₹</span>
-                            <input type="number" id="commercial_assets_value" name="commercial_assets_value" required min="0" step="100000" value="3000000">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="luxury_assets_value">Luxury Assets</label>
-                        <div class="input-wrapper">
-                            <span class="currency-prefix">₹</span>
-                            <input type="number" id="luxury_assets_value" name="luxury_assets_value" required min="0" step="100000" value="10000000">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="bank_asset_value">Bank Assets</label>
-                        <div class="input-wrapper">
-                            <span class="currency-prefix">₹</span>
-                            <input type="number" id="bank_asset_value" name="bank_asset_value" required min="0" step="100000" value="5000000">
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    🚀 Predict Loan Approval
-                </button>
-            </form>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Analyzing your application with AI...</p>
-            </div>
-
-            <div class="error-message" id="errorMessage"></div>
-
-            <div class="result-container" id="result">
-                <!-- Result will be displayed here -->
             </div>
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="row" style="padding: 30px 0;">
+                <div class="col-sm-6">
+                    <h4 style="color: white; margin-top: 0;">AI Loan Predictor</h4>
+                    <p>Advanced machine learning-powered loan approval prediction system</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <p style="margin-bottom: 10px;"><strong>Contact Information</strong></p>
+                    <p style="margin-bottom: 5px;"><i class="fa fa-envelope"></i> support@loanpredictor.com</p>
+                    <p><i class="fa fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+            </div>
+            <hr style="border-color: rgba(255,255,255,0.2); margin: 20px 0;">
+            <div class="row" style="padding: 20px 0;">
+                <div class="col-xs-12 text-center">
+                    <p style="margin: 0;">© 2026 AI Loan Prediction System. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         document.getElementById('loanForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -672,7 +710,7 @@
             // Get form data
             const formData = new FormData(e.target);
             const data = Object.fromEntries(formData.entries());
-            
+
             // Add selected model
             data.model = document.getElementById('model').value;
 
@@ -710,7 +748,7 @@
                             <div class="model-used">Using: ${result.model_used}</div>
                             <h2>Congratulations!</h2>
                             <p class="subtitle">Your loan application has been approved! Based on our AI analysis, you meet all the necessary criteria.</p>
-                            
+
                             <div class="confidence-meter">
                                 <div class="confidence-label">
                                     <span>Approval Confidence</span>
@@ -720,7 +758,7 @@
                                     <div class="progress-fill" style="width: ${result.confidence}%"></div>
                                 </div>
                             </div>
-                            
+
                             <div class="stats-grid">
                                 <div class="stat-card">
                                     <div class="stat-label">Approval Rate</div>
@@ -739,7 +777,7 @@
                             <div class="model-used">Using: ${result.model_used}</div>
                             <h2>Application Not Approved</h2>
                             <p class="subtitle">Unfortunately, your loan application does not meet the approval criteria at this time. Consider improving your financial profile and reapplying.</p>
-                            
+
                             <div class="confidence-meter">
                                 <div class="confidence-label">
                                     <span>Rejection Confidence</span>
@@ -749,7 +787,7 @@
                                     <div class="progress-fill" style="width: ${result.confidence}%"></div>
                                 </div>
                             </div>
-                            
+
                             <div class="stats-grid">
                                 <div class="stat-card">
                                     <div class="stat-label">Rejection Rate</div>
